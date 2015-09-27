@@ -1,1 +1,4 @@
-.vagrant
+.vagrant/
+.idea/
+PhotoWorld/
+
