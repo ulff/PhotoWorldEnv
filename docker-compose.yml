@@ -1,16 +1,26 @@
 web:
   build: .
   links:
-    - db
+    - mongo
+    - mysql
   environment:
     APACHE_LOG_DIR: /var/log/apache2
   volumes:
-    - PhotoWorld:/var/www/PhotoWorld
+    - ./PhotoWorld:/var/www/PhotoWorld
   ports:
     - "80:80"
-db:
+mongo:
   image: mongo:latest
   volumes:
     - /mnt/sda1/var/lib/mongo-data:/data/db
   ports:
     - "27017:27017"
+mysql:
+  image: mysql:5.6
+  ports:
+      - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_USER: dev
+    MYSQL_PASSWORD: d3v
+    MYSQL_DATABASE: photoworld
